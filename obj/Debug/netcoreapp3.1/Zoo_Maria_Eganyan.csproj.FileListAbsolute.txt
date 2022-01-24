@@ -1,0 +1,14 @@
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\bin\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.exe
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\bin\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.deps.json
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\bin\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.runtimeconfig.json
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\bin\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.runtimeconfig.dev.json
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\bin\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.dll
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\bin\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.pdb
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\obj\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\obj\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\obj\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\obj\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.AssemblyInfo.cs
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\obj\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\obj\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.dll
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\obj\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.pdb
+C:\Users\Admin\source\repos\Zoo_Maria_Eganyan\obj\Debug\netcoreapp3.1\Zoo_Maria_Eganyan.genruntimeconfig.cache
