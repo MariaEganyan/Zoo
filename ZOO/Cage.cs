@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Zoo_Maria_Eganyan
 {
     class Cage
     {
+        public event Worker Event;
         public int Number { get; set; }
         private List<Animal> animalsOfCage { get; set; }
         public Food Food { get => animalsOfCage[0].Food; }
@@ -15,11 +14,12 @@ namespace Zoo_Maria_Eganyan
             this.Number = number;
             animalsOfCage = new List<Animal>();
         }
-        
+
         public void AddAnimal(Animal animal)
         {
             animalsOfCage.Add(animal);
         }
+
         public bool CheckNumber(Animal animal)
         {
             if (animal.Number == Number)
@@ -31,13 +31,18 @@ namespace Zoo_Maria_Eganyan
                 return false;
             }
         }
+
         public void AnimalsEating()
         {
-            foreach(Animal a in animalsOfCage)
+            if (Event != null)
             {
-                a.Feed(FeedingBowl);
+                Event();
+                foreach (Animal a in animalsOfCage)
+                {
+                    a.Feed(FeedingBowl);
+                }
+                FeedingBowl = default;
             }
-            FeedingBowl = default;
         }
     }
 }

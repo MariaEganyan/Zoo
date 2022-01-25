@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Zoo_Maria_Eganyan.FeedAnimal;
+﻿using Zoo_Maria_Eganyan.FeedAnimal;
 
 namespace Zoo_Maria_Eganyan
 {
