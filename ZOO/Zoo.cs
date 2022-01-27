@@ -54,6 +54,7 @@ namespace Zoo_Maria_Eganyan
 
         public void WorkZoo()
         {
+            WorkGuard();
             foreach (Cage c in Cages)
             {
                 c.Event += new Worker(WorkGuard);

@@ -17,7 +17,10 @@ namespace Zoo_Maria_Eganyan
 
         public void AddAnimal(Animal animal)
         {
-            animalsOfCage.Add(animal);
+            if (CheckNumber(animal))
+            {
+                animalsOfCage.Add(animal);
+            }
         }
 
         public bool CheckNumber(Animal animal)
@@ -36,7 +39,6 @@ namespace Zoo_Maria_Eganyan
         {
             if (Event != null)
             {
-                Event();
                 foreach (Animal a in animalsOfCage)
                 {
                     a.Feed(FeedingBowl);
