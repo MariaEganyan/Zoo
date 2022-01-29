@@ -5,7 +5,7 @@ using Zoo_Maria_Eganyan.FeedAnimal;
 
 namespace Zoo_Maria_Eganyan
 {
-    public delegate void Worker();
+    public delegate void Action();
     class Zoo
     {
         private Timer _timer = new Timer(TimeSpan.FromSeconds(2).TotalMilliseconds);

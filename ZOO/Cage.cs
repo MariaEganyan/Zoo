@@ -4,7 +4,7 @@ namespace Zoo_Maria_Eganyan
 {
     class Cage
     {
-        public event Worker Event;
+        public event Action FoodArived;
         public int Number { get; set; }
         private List<Animal> animalsOfCage { get; set; }
         public Food Food { get => animalsOfCage[0].Food; }
@@ -23,7 +23,7 @@ namespace Zoo_Maria_Eganyan
             }
         }
 
-        public bool CheckNumber(Animal animal)
+        private bool CheckNumber(Animal animal)
         {
             if (animal.Number == Number)
             {
@@ -37,14 +37,12 @@ namespace Zoo_Maria_Eganyan
 
         public void AnimalsEating()
         {
-            if (Event != null)
+
+            foreach (Animal a in animalsOfCage)
             {
-                foreach (Animal a in animalsOfCage)
-                {
-                    a.Feed(FeedingBowl);
-                }
-                FeedingBowl = default;
+                a.Feed(FeedingBowl);
             }
+            FeedingBowl = default;
         }
     }
 }
