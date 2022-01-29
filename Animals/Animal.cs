@@ -7,7 +7,7 @@ namespace Zoo_Maria_Eganyan
 {
     abstract class Animal
     {
-        private MyLoger _loger;
+        private ILoger _loger;
         private Cage _myCage { get; set; }
         private Timer _timer = new Timer(TimeSpan.FromSeconds(5).TotalMilliseconds);
         private int _number;

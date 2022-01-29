@@ -6,7 +6,7 @@ namespace Zoo_Maria_Eganyan
     public delegate void Action();
     class Cage
     {
-        private MyLoger _logerCage;
+        private ILoger _logerCage;
         public event Action FoodArived;
         private readonly int _number;
         public List<Animal> AnimalsOfCage { get; set; }
