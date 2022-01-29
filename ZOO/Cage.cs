@@ -1,48 +1,49 @@
 ﻿using System.Collections.Generic;
+using Zoo_Maria_Eganyan.LogInfo;
 
 namespace Zoo_Maria_Eganyan
 {
+    public delegate void Action();
     class Cage
     {
+        private MyLoger _logerCage;
         public event Action FoodArived;
-        public int Number { get; set; }
-        private List<Animal> animalsOfCage { get; set; }
-        public Food Food { get => animalsOfCage[0].Food; }
+        private readonly int _number;
+        public List<Animal> AnimalsOfCage { get; set; }
         public Food FeedingBowl { get; set; }
         public Cage(int number)
         {
-            this.Number = number;
-            animalsOfCage = new List<Animal>();
+            this._number = number;
+            AnimalsOfCage = new List<Animal>();
+            _logerCage = MyLoger.GetInstance();
         }
 
         public void AddAnimal(Animal animal)
         {
             if (CheckNumber(animal))
             {
-                animalsOfCage.Add(animal);
+                AnimalsOfCage.Add(animal);
+                animal.SetCage(this);
             }
         }
 
         private bool CheckNumber(Animal animal)
         {
-            if (animal.Number == Number)
+            if (animal.Number == _number)
             {
                 return true;
             }
             else
             {
+                _logerCage.LogError("The numbers of cage and animal do not match");
                 return false;
             }
         }
 
-        public void AnimalsEating()
+        public void AddFood(Food food)
         {
-
-            foreach (Animal a in animalsOfCage)
-            {
-                a.Feed(FeedingBowl);
-            }
-            FeedingBowl = default;
+            this.FeedingBowl = food;
+            FoodArived?.Invoke();
         }
     }
 }

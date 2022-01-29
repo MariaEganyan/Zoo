@@ -8,7 +8,7 @@ namespace Zoo_Maria_Eganyan
         {
             Birthday = bday;
             TimeOfFeed = timeofeed;
-            Food = Food.Grass;
+            FoodType = FoodType.Grass;
             Number = number;
         }
     }

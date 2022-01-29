@@ -5,17 +5,16 @@ using Zoo_Maria_Eganyan.FeedAnimal;
 
 namespace Zoo_Maria_Eganyan
 {
-    public delegate void Action();
     class Zoo
     {
         private Timer _timer = new Timer(TimeSpan.FromSeconds(2).TotalMilliseconds);
-        private List<Cage> Cages { get; set; }
-        private IEmployee Guard { get; set; }
+        private List<Cage> _cages { get; set; }
+        private IEmployee _guard { get; set; }
        
         public Zoo(IEmployee guard)
         {
-            Cages = new List<Cage>();
-            Guard = guard;
+            _cages = new List<Cage>();
+            _guard = guard;
             Work();
         }
         private void Work()
@@ -32,33 +31,22 @@ namespace Zoo_Maria_Eganyan
         }
         public void AddAnimal(Animal animal)
         {
-            for(int i = 0; i < Cages.Count; i++)
+            for(int i = 0; i < _cages.Count; i++)
             {
-                if (Cages[i].CheckNumber(animal))
-                {
-                    Cages[i].AddAnimal(animal);
-                }
+               _cages[i].AddAnimal(animal);
             }
         }
         public void AddCages(Cage cage)
         {
-            Cages.Add(cage);
+            _cages.Add(cage);
         }
         public void WorkGuard()
         {
-            foreach (Cage c in Cages)
+            
+            foreach (Cage c in _cages)
             {
-               Guard.FeedAnimals(c);
-            }
-        }
-
-        public void WorkZoo()
-        {
-            WorkGuard();
-            foreach (Cage c in Cages)
-            {
-                c.Event += new Worker(WorkGuard);
-                c.AnimalsEating();
+                Food food =new Food(c.AnimalsOfCage[0].FoodType);
+               _guard.FeedAnimals(c,food);
             }
         }
     }

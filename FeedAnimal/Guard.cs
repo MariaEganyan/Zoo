@@ -4,16 +4,16 @@ namespace Zoo_Maria_Eganyan
 {
     class Guard:IEmployee
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        private readonly string _firstName;
+        private readonly string _lastName;
         public Guard(string fName,string lName)
         {
-            FirstName = fName;
-            LastName = lName;
+            _firstName = fName;
+            _lastName = lName;
         }
-        public void FeedAnimals(Cage cage)
+        public void FeedAnimals(Cage cage,Food food)
         {
-            cage.FeedingBowl= cage.Food;
+            cage.AddFood(food);
         }
     }
 }

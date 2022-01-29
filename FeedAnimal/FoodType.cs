@@ -1,7 +1,7 @@
 ﻿
 namespace Zoo_Maria_Eganyan
 {
-    enum Food
+    enum FoodType
     {
         Meat,
         Grass

@@ -16,7 +16,7 @@ namespace Zoo_Maria_Eganyan
             int i = 2;
             while (i >= 0)
             {
-                zoo.WorkZoo();
+                zoo.WorkGuard();
                 i--;
             }
         }
