@@ -2,9 +2,10 @@
 
 namespace Zoo_Maria_Eganyan
 {
+    [AnimalDescription("Herbivorous animal,eat grass")]
     class Cow:Animal
     {
-        public Cow(DateTime bday, int sizeofstomach, int timeofeed,int number) : base("Cow",7)
+        public Cow(DateTime bday, int timeofeed,int number) : base("Cow",7)
         {
             Birthday = bday;
             TimeOfFeed = timeofeed;

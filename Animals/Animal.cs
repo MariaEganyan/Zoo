@@ -56,7 +56,8 @@ namespace Zoo_Maria_Eganyan
                 }
             }
         }
-        private int _sizeOfStomach
+        private int _sizeOfStomach;
+        public int SizeOfStomach
         {
             get
             {
@@ -77,7 +78,7 @@ namespace Zoo_Maria_Eganyan
         protected Animal(string name, int sizeofstomach)
         {
             _name = name;
-            _sizeOfStomach = sizeofstomach;
+            SizeOfStomach = sizeofstomach;
             _saveSize = sizeofstomach;
             _loger = MyLoger.GetInstance();
             Hungry();
@@ -93,7 +94,7 @@ namespace Zoo_Maria_Eganyan
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             _saveSize--;
-            if (_saveSize < _sizeOfStomach / 2)
+            if (_saveSize < SizeOfStomach / 2)
             {
                 _loger.LogWarning("Animal will be dead");
             }
@@ -105,7 +106,7 @@ namespace Zoo_Maria_Eganyan
                 _loger.LogInformation("Animal died");
                 return AnimalStatus.Dead;
             }
-            if(_saveSize>0 && _saveSize<=_sizeOfStomach/2)
+            if(_saveSize>0 && _saveSize<=SizeOfStomach/2)
             {
                 if (CheckFood(food)==1)
                 {
@@ -136,8 +137,8 @@ namespace Zoo_Maria_Eganyan
         {
             if (CanEat(food) == AnimalStatus.Hungry)
             {
-                Console.WriteLine("{0} Eat {1}",_name,food);
-                _saveSize = _sizeOfStomach;
+                Console.WriteLine("{0} Eat {1}",_name,food.FoodType);
+                _saveSize = SizeOfStomach;
             }
             else if (CanEat(food) == AnimalStatus.Dead)
             {
