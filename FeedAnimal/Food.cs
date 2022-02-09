@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Zoo_Maria_Eganyan
 {
-    class Food
+    public class Food
     {
         public readonly FoodType FoodType;
         private int _weight;
@@ -17,13 +17,15 @@ namespace Zoo_Maria_Eganyan
             set
             {
                 if (value < 0)
-                    value = 0;
-                _weight = value;
+                    _weight = 0;
+                else
+                    _weight = value;
             }
         }
         public Food(FoodType food)
         {
             FoodType = food;
+            Weight = 0;
         }
         public bool ChackFoodType(FoodType food)
         {

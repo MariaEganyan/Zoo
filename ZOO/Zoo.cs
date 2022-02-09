@@ -42,11 +42,18 @@ namespace Zoo_Maria_Eganyan
         }
         public void WorkGuard()
         {
-            
             foreach (Cage c in _cages)
             {
-                Food food =new Food(c.AnimalsOfCage[0].FoodType);
-               _guard.FeedAnimals(c,food);
+                Food food = new Food(c.AnimalsOfCage[0].FoodType);
+                food.Weight = c.FeedingBowl.Size;
+                try
+                {
+                    _guard.FeedAnimals(c, food);
+                }
+                catch
+                {
+                    continue;
+                }
             }
         }
     }

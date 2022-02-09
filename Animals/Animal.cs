@@ -2,6 +2,7 @@
 using System.Timers;
 using Zoo_Maria_Eganyan.FeedAnimal;
 using Zoo_Maria_Eganyan.LogInfo;
+using Zoo_Maria_Eganyan.ZOO;
 
 namespace Zoo_Maria_Eganyan
 {
@@ -133,6 +134,7 @@ namespace Zoo_Maria_Eganyan
                 return 0;
             }
         }
+        
         private void _eat(Food food)
         {
             if (CanEat(food) == AnimalStatus.Hungry)
@@ -158,11 +160,14 @@ namespace Zoo_Maria_Eganyan
             _myCage = cage;
             _myCage.FoodArived += _food_of_animal_arived;
         }
-        private void _food_of_animal_arived()
+        private void _food_of_animal_arived(object sender,MyEventArgs e)
         {
-            Food food = _myCage.FeedingBowl;
-            _eat(food);
-            _myCage.FeedingBowl.Weight=0;
+            Food food = _myCage.FeedingBowl.Food;
+            if (_myCage.FeedingBowl.FullOrNot())
+            {
+                _eat(food);
+                _myCage.FeedingBowl.Food.Weight--;
+            }
         }
     }
 }
