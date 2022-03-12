@@ -6,7 +6,7 @@ namespace Zoo_Maria_Eganyan
     class Cow:Animal
     {
          
-        public Cow(DateTime bday, int timeofeed,int number) : base("Cow",7)
+        public Cow(DateTime bday, int timeofeed,int number) : base("Cow",5,2000)
         {
             Birthday = bday;
             TimeOfFeed = timeofeed;

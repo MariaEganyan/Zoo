@@ -45,8 +45,7 @@ namespace Zoo_Maria_Eganyan
                 return false;
             }
         }
-        //Ես ստեղ փոխել եմ eventards-ը ուղղակի լավ չեմ հասկանում ինչ օգուտա տալիս 
-        //կամ կարողա ես ճիշտ չեմ օգտագործում 
+        
         public void AddFood(Food food)
         {
             FeedingBowl.AddFoodIn(food);

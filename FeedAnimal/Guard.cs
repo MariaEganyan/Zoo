@@ -13,10 +13,8 @@ namespace Zoo_Maria_Eganyan
         }
         public void FeedAnimals(Cage cage, Food food)
         {
-            if (!cage.FeedingBowl.FullOrNot())
-            {
-                cage.AddFood(food);
-            }
+               cage.AddFood(food);
+            
         }
     }
 }

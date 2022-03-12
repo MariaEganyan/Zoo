@@ -15,27 +15,8 @@ namespace Zoo_Maria_Eganyan
         {
             _cages = new List<Cage>();
             _guard = guard;
-            Work();
         }
-        private void Work()
-        {
-            _timer.Elapsed += Timer_Elapsed;
-            _timer.Enabled = true;
-            _timer.AutoReset = true;
-            _timer.Start();
-            Console.ReadKey();
-        }
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            WorkGuard();
-        }
-        public void AddAnimal(Animal animal)
-        {
-            for(int i = 0; i < _cages.Count; i++)
-            {
-               _cages[i].AddAnimal(animal);
-            }
-        }
+     
         public void AddCages(Cage cage)
         {
             _cages.Add(cage);

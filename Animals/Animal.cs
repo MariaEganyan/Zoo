@@ -3,23 +3,22 @@ using System.Timers;
 using Zoo_Maria_Eganyan.FeedAnimal;
 using Zoo_Maria_Eganyan.LogInfo;
 using Zoo_Maria_Eganyan.ZOO;
+using System.Threading;
 
 namespace Zoo_Maria_Eganyan
 {
     abstract class Animal
     {
-        private ILoger _loger;
+        private static ILoger _loger;
+        public Thread AnimalThread = new Thread(new ParameterizedThreadStart(Hungry));
         private Cage _myCage { get; set; }
-        private Timer _timer = new Timer(TimeSpan.FromSeconds(5).TotalMilliseconds);
+        //private Timer _timer = new Timer(TimeSpan.FromSeconds(5).TotalMilliseconds);
         private int _number;
         private string _name { get; set; }
         protected DateTime Birthday { get; set; }
-        private int _saveSize { get; set; }
-        //ստեղ մի հատ հարց ա առաջացել եթե ես ուզում եմ որ իմ կենդանու foodtype-ը 
-        //լինի readonly ես իրան ստեղ չեմ կարում հայտարարեմ ու օրինակ tiger-ի կանստրուկտրում 
-        //կանչեմ դրա համար ամեն կենդանում մեջ իրանը պետքա ունենամ բայց էտ դեպքում էլ կոդի կրկնություն
-        //կլինի չէ էտ պահը ոնց ա ճիշտ անել 
-        public  FoodType FoodType;
+        private static int _saveSize { get; set; }
+
+        public FoodType FoodType;
         private int _timeOfFeed;
         public int Number
         {
@@ -29,7 +28,7 @@ namespace Zoo_Maria_Eganyan
             }
             set
             {
-                if (value < 0 )
+                if (value < 0)
                 {
                     this._number = 0;
                 }
@@ -57,8 +56,8 @@ namespace Zoo_Maria_Eganyan
                 }
             }
         }
-        private int _sizeOfStomach;
-        public int SizeOfStomach
+        private static int _sizeOfStomach;
+        public static int SizeOfStomach
         {
             get
             {
@@ -68,7 +67,7 @@ namespace Zoo_Maria_Eganyan
             {
                 if (value <= 0)
                 {
-                    this._sizeOfStomach = 1;
+                    _sizeOfStomach = 1;
                 }
                 else
                 {
@@ -76,29 +75,23 @@ namespace Zoo_Maria_Eganyan
                 }
             }
         }
-        protected Animal(string name, int sizeofstomach)
+        protected Animal(string name, int sizeofstomach, int time)
         {
             _name = name;
             SizeOfStomach = sizeofstomach;
             _saveSize = sizeofstomach;
             _loger = MyLoger.GetInstance();
-            Hungry();
+            AnimalThread.Start(time);
         }
-        private void Hungry()
+       
+        private static void Hungry(object a)
         {
-            _timer.Elapsed += Timer_Elapsed;
-            _timer.Enabled = true;
-            _timer.AutoReset = true;
-            _timer.Start();
-            Console.ReadKey();
-        }
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            _saveSize--;
-            if (_saveSize < SizeOfStomach / 2)
+            while (true)
             {
-                _loger.LogWarning("Animal will be dead");
+                _saveSize--;
+                Thread.Sleep((int)a);
             }
+              
         }
         private AnimalStatus CanEat(Food food)
         {
@@ -107,9 +100,9 @@ namespace Zoo_Maria_Eganyan
                 _loger.LogInformation("Animal died");
                 return AnimalStatus.Dead;
             }
-            if(_saveSize>0 && _saveSize<=SizeOfStomach/2)
+            if (_saveSize > 0 && _saveSize <= SizeOfStomach / 2)
             {
-                if (CheckFood(food)==1)
+                if (CheckFood(food) == 1)
                 {
                     return AnimalStatus.Hungry;
                 }
@@ -134,25 +127,29 @@ namespace Zoo_Maria_Eganyan
                 return 0;
             }
         }
-        
-        private void _eat(Food food)
+
+        private bool _eat(Food food)
         {
             if (CanEat(food) == AnimalStatus.Hungry)
             {
-                Console.WriteLine("{0} Eat {1}",_name,food.FoodType);
+                Console.WriteLine("{0} Eat {1}", _name, food.FoodType);
                 _saveSize = SizeOfStomach;
+                return true;
             }
             else if (CanEat(food) == AnimalStatus.Dead)
             {
                 Console.WriteLine("the Animal is dead");
+                return false;
             }
             else if (CanEat(food) == AnimalStatus.CannottEat)
             {
                 Console.WriteLine("Can't eat that");
+                return false;
             }
             else
             {
                 Console.WriteLine("don't need to eat");
+                return false;
             }
         }
         public void SetCage(Cage cage)
@@ -160,13 +157,16 @@ namespace Zoo_Maria_Eganyan
             _myCage = cage;
             _myCage.FoodArived += _food_of_animal_arived;
         }
-        private void _food_of_animal_arived(object sender,MyEventArgs e)
+        private void _food_of_animal_arived(object sender, MyEventArgs e)
         {
-            Food food = _myCage.FeedingBowl.Food;
+
             if (_myCage.FeedingBowl.FullOrNot())
             {
-                _eat(food);
-                _myCage.FeedingBowl.Food.Weight--;
+                if (_eat(e.Food))
+                {
+                    _myCage.FeedingBowl.Food.Weight--;
+                }
+                
             }
         }
     }
