@@ -7,6 +7,7 @@ using System.Threading;
 
 namespace Zoo_Maria_Eganyan
 {
+
     abstract class Animal
     {
         private static ILoger _loger;
@@ -83,15 +84,16 @@ namespace Zoo_Maria_Eganyan
             _loger = MyLoger.GetInstance();
             AnimalThread.Start(time);
         }
-       
+
         private static void Hungry(object a)
         {
             while (true)
             {
                 _saveSize--;
+                Console.WriteLine(_saveSize);
                 Thread.Sleep((int)a);
             }
-              
+
         }
         private AnimalStatus CanEat(Food food)
         {
@@ -162,12 +164,15 @@ namespace Zoo_Maria_Eganyan
 
             if (_myCage.FeedingBowl.FullOrNot())
             {
+                int a = _myCage.FeedingBowl.Food.Weight;
                 if (_eat(e.Food))
                 {
-                    _myCage.FeedingBowl.Food.Weight--;
+                    Interlocked.Exchange(ref a, _myCage.FeedingBowl.Food.Weight--);
+                    Console.WriteLine(_myCage.FeedingBowl.Food.Weight);
                 }
-                
+
             }
+
         }
     }
 }

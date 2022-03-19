@@ -8,7 +8,8 @@ namespace Zoo_Maria_Eganyan
     {
         public readonly FoodType FoodType;
         private int _weight;
-        public int Weight
+        
+        public  int Weight
         {
             get
             {
